@@ -1,0 +1,9 @@
+com.DefaultCompany.Small_Project.launcher-pngs-0 D:\Small_Project\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\generated\res\pngs\release
+com.DefaultCompany.Small_Project.launcher-resValues-1 D:\Small_Project\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\generated\res\resValues\release
+com.DefaultCompany.Small_Project.launcher-rs-2 D:\Small_Project\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\generated\res\rs\release
+com.DefaultCompany.Small_Project.launcher-mergeReleaseResources-3 D:\Small_Project\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\intermediates\incremental\release\mergeReleaseResources\merged.dir
+com.DefaultCompany.Small_Project.launcher-mergeReleaseResources-4 D:\Small_Project\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\intermediates\incremental\release\mergeReleaseResources\stripped.dir
+com.DefaultCompany.Small_Project.launcher-merged_res-5 D:\Small_Project\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\build\intermediates\merged_res\release
+com.DefaultCompany.Small_Project.launcher-main-6 D:\Small_Project\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\main\res
+com.DefaultCompany.Small_Project.launcher-release-7 D:\Small_Project\Library\Bee\Android\Prj\Mono2x\Gradle\launcher\src\release\res
+com.DefaultCompany.Small_Project.launcher-packaged_res-8 D:\Small_Project\Library\Bee\Android\Prj\Mono2x\Gradle\unityLibrary\build\intermediates\packaged_res\release

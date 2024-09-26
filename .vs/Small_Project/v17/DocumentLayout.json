@@ -1,0 +1,103 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Small_Project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{19112D8A-50D5-9F2B-502F-31B99CEFD60E}|Assembly-CSharp.csproj|d:\\small_project\\assets\\scenes\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19112D8A-50D5-9F2B-502F-31B99CEFD60E}|Assembly-CSharp.csproj|solutionrelative:assets\\scenes\\levelmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19112D8A-50D5-9F2B-502F-31B99CEFD60E}|Assembly-CSharp.csproj|D:\\Small_Project\\assets\\scenes\\gamepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19112D8A-50D5-9F2B-502F-31B99CEFD60E}|Assembly-CSharp.csproj|solutionrelative:assets\\scenes\\gamepage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19112D8A-50D5-9F2B-502F-31B99CEFD60E}|Assembly-CSharp.csproj|D:\\Small_Project\\assets\\scenes\\leveldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19112D8A-50D5-9F2B-502F-31B99CEFD60E}|Assembly-CSharp.csproj|solutionrelative:assets\\scenes\\leveldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19112D8A-50D5-9F2B-502F-31B99CEFD60E}|Assembly-CSharp.csproj|D:\\Small_Project\\assets\\scenes\\anchoringwithinputs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19112D8A-50D5-9F2B-502F-31B99CEFD60E}|Assembly-CSharp.csproj|solutionrelative:assets\\scenes\\anchoringwithinputs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AnchoringWithInputs.cs",
+              "DocumentMoniker": "D:\\Small_Project\\Assets\\Scenes\\AnchoringWithInputs.cs",
+              "RelativeDocumentMoniker": "Assets\\Scenes\\AnchoringWithInputs.cs",
+              "ToolTip": "D:\\Small_Project\\Assets\\Scenes\\AnchoringWithInputs.cs",
+              "RelativeToolTip": "Assets\\Scenes\\AnchoringWithInputs.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAgwCEAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-25T11:08:35.731Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "LevelManager.cs",
+              "DocumentMoniker": "D:\\Small_Project\\Assets\\Scenes\\LevelManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scenes\\LevelManager.cs",
+              "ToolTip": "D:\\Small_Project\\Assets\\Scenes\\LevelManager.cs",
+              "RelativeToolTip": "Assets\\Scenes\\LevelManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABwAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T13:08:45.248Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LevelData.cs",
+              "DocumentMoniker": "D:\\Small_Project\\Assets\\Scenes\\LevelData.cs",
+              "RelativeDocumentMoniker": "Assets\\Scenes\\LevelData.cs",
+              "ToolTip": "D:\\Small_Project\\Assets\\Scenes\\LevelData.cs",
+              "RelativeToolTip": "Assets\\Scenes\\LevelData.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T13:02:57.09Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GamePage.cs",
+              "DocumentMoniker": "D:\\Small_Project\\Assets\\Scenes\\GamePage.cs",
+              "RelativeDocumentMoniker": "Assets\\Scenes\\GamePage.cs",
+              "ToolTip": "D:\\Small_Project\\Assets\\Scenes\\GamePage.cs",
+              "RelativeToolTip": "Assets\\Scenes\\GamePage.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-23T13:01:43.024Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 86,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
