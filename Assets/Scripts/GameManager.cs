@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        UpdateLivesUI();  // Show initial lives
+        UpdateLivesUI(); 
     }
 
     void Awake()
@@ -18,61 +18,52 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);  // Optional: Keep GameManager between scenes
+            DontDestroyOnLoad(gameObject);  
         }
         else
         {
-            Destroy(gameObject);  // Destroy any duplicate GameManagers
+            Destroy(gameObject);  
         }
     }
 
-    // This function will be called when the player chooses a wrong answer
     public void OnWrongAnswer()
     {
-        Debug.Log("OnWrongAnswer called.");  // Check if the function is being called
+        Debug.Log("OnWrongAnswer called.");  
 
         if (lives > 0)
         {
-            Debug.Log("Wrong answer. Lives before: " + lives);  // Log current lives
+            Debug.Log("Wrong answer. Lives before: " + lives); 
 
-            lives--;  // Decrease life by 1
+            lives--; 
 
-            UpdateLivesUI();  // Update UI with new lives count
-
-            Debug.Log("Lives after: " + lives);  // Log updated lives
+            UpdateLivesUI();  
+            Debug.Log("Lives after: " + lives);  
 
             wrongAnswerMessage.SetActive(true);
 
             if (lives == 0)
             {
-                GameOver();  // Call GameOver when lives run out
+                GameOver();  
             }
         }
     }
-
-    // Update the lives text in the UI
     void UpdateLivesUI()
     {
-        livesText.text = "Lives: " + lives;  // Update the UI text
-        Debug.Log("UI updated. Lives displayed: " + lives);  // Log the lives count to the console
+        livesText.text = "Lives: " + lives;
+        Debug.Log("UI updated. Lives displayed: " + lives);  
     }
-
-    // Handle game over state
     void GameOver()
     {
         Debug.Log("Game Over! You have no lives left.");
-        // Show a game over screen or restart the game
+
     }
 
     public void AnswerSelected(bool isCorrect)
     {
         if (!isCorrect)
         {
-            GameManager.Instance.OnWrongAnswer();  // Call wrong answer logic
+            GameManager.Instance.OnWrongAnswer();  
         }
-        else
-        {
-            // Call logic for correct answer
-        }
+       
     }
 }
