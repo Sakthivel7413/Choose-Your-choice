@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,12 +13,6 @@ public class LevelManager : MonoBehaviour
 
     public TMP_Text questionText, yesButtonText, noButtonText;
     public Image logoImage;
-    public TMP_Text wrongAnswerText;
-    public TMP_Text correctAnswerText;
-    public TMP_Text finalText;
-    public TMP_Text hintText;
-    public int correctAnswerCount = 0;
-    public int lives = 3;
     public TMP_Text livesText;
 
     public Button nextButton;
@@ -25,37 +20,33 @@ public class LevelManager : MonoBehaviour
     public Button noButton;
     public Button backButton;
 
+    private List<IObserver> observers = new List<IObserver>();
+
     public float popDuration = 5f;
     public float visibleDuration = 5f;
     public float hideDuration = 5f;
     public float popScale = 5f;
 
-    private bool hasAnsweredWrong = false;
-
+    public int lives = 3;
 
     public void LoadLevel()
     {
-        
         if (currentLevel <= levels.Count && currentLevel > 0)
         {
+            
             nextButton.gameObject.SetActive(true);
-            questionText.text = "Test Question for Level " + currentLevel;
+            LevelData currentLevelData = levels[currentLevel - 1];
 
-            questionText.text = levels[currentLevel - 1].question;
-            yesButtonText.text = levels[currentLevel - 1].yesButtonText;
-            noButtonText.text = levels[currentLevel - 1].noButtonText;
-            logoImage.sprite = levels[currentLevel - 1].logo;
-            ShowHintText(levels[currentLevel - 1].hintText);
-            ShowFinalText(levels[currentLevel - 1].finalText);
+            questionText.text = currentLevelData.question;
+            yesButtonText.text = currentLevelData.yesButtonText;
+            noButtonText.text = currentLevelData.noButtonText;
+            logoImage.sprite = currentLevelData.logo;
 
-
-            wrongAnswerText.gameObject.SetActive(false);
-            correctAnswerText.gameObject.SetActive(false);
-            hasAnsweredWrong = false;
+            NotifyObservers("Level Loaded: " + currentLevelData.question);
         }
         else
         {
-            Debug.LogError("Invalid level index. currentLevel: " + currentLevel);
+            Debug.LogError("Invalid level index.");
         }
     }
 
@@ -74,26 +65,23 @@ public class LevelManager : MonoBehaviour
         else
         {
             Debug.Log("All levels completed!");
-
         }
     }
+
     private void Start()
     {
         if (levels == null || levels.Count == 0)
         {
-           
             return;
         }
 
-        //ShuffleLevels();
-        wrongAnswerText.gameObject.SetActive(false);
-        correctAnswerText.gameObject.SetActive(false);
+        
         nextButton.gameObject.SetActive(false);
         backButton.gameObject.SetActive(true);
         LoadLevel();
         UpdateLivesUI();
-
     }
+
     public void UpdateLivesUI()
     {
         livesText.text = "Lives: " + lives;
@@ -101,158 +89,62 @@ public class LevelManager : MonoBehaviour
 
     public void CheckAnswer(bool isYesClicked)
     {
-        if (isYesClicked)
+        LevelData currentLevelData = levels[currentLevel - 1];
+
+        yesButton.interactable = false;
+        noButton.interactable = false;
+        if (currentLevelData.isYesAnswerCorrect == isYesClicked)
         {
-            noButton.interactable = false;
+            NotifyObservers("Correct Answer:" +currentLevelData.correctAnswerMessage);
         }
         else
         {
-            yesButton.interactable = false;
-        }
-        if (levels[currentLevel - 1].isYesAnswerCorrect == isYesClicked)
-        {
-            Debug.Log("Correct Answer");
-            correctAnswerText.text = levels[currentLevel - 1].correctAnswerMessage;
-            ShowCorrectAnswerText();
-            correctAnswerCount++;
-        }
-        else
-        {
-            Debug.Log("Wrong Answer");
-            if (!hasAnsweredWrong)
+            if (lives > 0)
             {
                 lives--;
-                hasAnsweredWrong = true;
                 UpdateLivesUI();
+
+                NotifyObservers("Wrong Answer:" + currentLevelData.wrongAnswerMessage);
 
                 if (lives <= 0)
                 {
                     ShowGameOverPopup();
                 }
             }
-            wrongAnswerText.text = levels[currentLevel - 1].wrongAnswerMessage;
-            ShowWrongAnswerText();
         }
+
         nextButton.gameObject.SetActive(true);
     }
-    //This line of will code make a game over popup message and disable all the images and buttons....
+
+    public void RegisterObserver(IObserver observer)
+    {
+        observers.Add(observer);
+    }
+
+    public void UnregisterObserver(IObserver observer)
+    {
+        observers.Remove(observer);
+    }
+
+    private void NotifyObservers(string message)
+    {
+        foreach (IObserver observer in observers)
+        {
+            observer.OnNotify(message);
+        }
+    }
+
     private void ShowGameOverPopup()
     {
-
-        correctAnswerText.text = "Game Over!";
-        correctAnswerText.gameObject.SetActive(true);
-        correctAnswerText.transform.localScale = Vector3.zero;
-        correctAnswerText.transform.DOScale(popScale, popDuration)
-            .SetEase(Ease.OutBack)
-            .OnComplete(() => StartCoroutine(HideAfterDelay(visibleDuration)));
-
+        Debug.Log("Game Over!");
 
         nextButton.interactable = false;
         yesButton.interactable = false;
         noButton.interactable = false;
         backButton.interactable = true;
 
-
         logoImage.gameObject.SetActive(false);
         questionText.gameObject.SetActive(false);
         livesText.gameObject.SetActive(false);
-        hintText.gameObject.SetActive(false);
-        wrongAnswerText.gameObject.SetActive(false);
     }
-
-   
-    public void ShowHintText(string message)
-    {
-        hintText.text = message;
-
-        hintText.transform.localScale = Vector3.one;
-        hintText.gameObject.SetActive(true);
-
-        hintText.transform.DOScale(popScale, popDuration)
-            .SetEase(Ease.OutBack)
-            .OnComplete(() => StartCoroutine(HideHintTextAfterDelay(visibleDuration)));
-    }
-
-    private IEnumerator HideHintTextAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        hintText.transform.DOScale(0f, hideDuration).OnComplete(() =>
-        {
-            hintText.gameObject.SetActive(false);
-        });
-    }
-    public void ShowFinalText(string message)
-    {
-        finalText.text = message;
-
-        finalText.transform.localScale = Vector3.one;
-        finalText.gameObject.SetActive(true);
-
-        finalText.transform.DOScale(popScale, popDuration)
-            .SetEase(Ease.OutBack)
-            .OnComplete(() => StartCoroutine(HidefinalTextAfterDelay(visibleDuration)));
-    }
-
-    private IEnumerator HidefinalTextAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-
-        finalText.transform.DOScale(0f, hideDuration).OnComplete(() =>
-        {
-            finalText.gameObject.SetActive(false);
-        });
-    }
-    private IEnumerator HideAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        correctAnswerText.gameObject.SetActive(false); 
-    }
-
-
-    private void ShowWrongAnswerText()
-    {
-        wrongAnswerText.gameObject.SetActive(true);       
-        StartCoroutine(HideWrongAnswerTextAfterDelay(10f)); 
-    } 
-    private IEnumerator HideWrongAnswerTextAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        wrongAnswerText.gameObject.SetActive(false);
-    }
-    private void ShowCorrectAnswerText()
-    {
-        correctAnswerText.gameObject.SetActive(true); 
-        StartCoroutine(HideCorrectAnswerTextAfterDelay(10f));
-    }
-
-    private IEnumerator HideCorrectAnswerTextAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        correctAnswerText.gameObject.SetActive(false); 
-    }  
 }
-
-
-
-
-//It will helps to shuffle the levels Ease, Medium and Hard levels...
-//private void ShuffleLevels()
-//{
-
-//    LevelData hardLevel = levels[levels.Count - 1]; 
-//    List<LevelData> easyMediumLevels = levels.GetRange(0, levels.Count - 1);   
-//    for (int i = easyMediumLevels.Count - 1; i > 0; i--)
-//    {
-//        int j = Random.Range(0, i + 1); 
-
-//        LevelData temp = easyMediumLevels[i];
-//        easyMediumLevels[i] = easyMediumLevels[j];
-//        easyMediumLevels[j] = temp;
-//    }
-
-
-//    levels.Clear();
-//    levels.AddRange(easyMediumLevels);
-//    levels.Add(hardLevel); 
-//}
